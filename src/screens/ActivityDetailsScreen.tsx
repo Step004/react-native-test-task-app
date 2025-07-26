@@ -5,9 +5,11 @@ import { ActivityItem } from './types/root'
 import { ScrollView } from 'react-native-gesture-handler'
 import { StatusBar, Image, TouchableOpacity, View, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useFavorites } from '../hooks/useFavorites'
 import { useState } from 'react'
 
 export const ActivityDetailsScreen = () => {
+  const { mutate } = useFavorites()
   const [imgError, setImgError] = useState(false)
   const navigation = useNavigation()
   const route = useRoute()
@@ -16,10 +18,9 @@ export const ActivityDetailsScreen = () => {
   const handleBack = () => {
     navigation.goBack()
   }
-  const handleAddToFavorites = () => {
-    console.log('Add to Favorites:', item.name)
+  const handleAddToFavorites = (id: number) => {
+    mutate(id)
   }
-
   return (
     <SafeAreaView style={tw`bg-white flex-1`} edges={['bottom']}>
       <View style={tw`bg-white flex-1`}>
@@ -70,7 +71,7 @@ export const ActivityDetailsScreen = () => {
         <TouchableOpacity
           activeOpacity={0.7}
           style={tw`bg-[#000] p-5 rounded-full mx-5 mt-[60px] absolute bottom-2 left-0 right-0`}
-          onPress={() => handleAddToFavorites()}
+          onPress={() => handleAddToFavorites(item.id)}
         >
           <Text style={tw`text-base font-normal text-white text-center`}>
             Add to Favorites
