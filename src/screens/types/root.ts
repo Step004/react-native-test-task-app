@@ -1,8 +1,18 @@
-import { StackScreenProps } from '@react-navigation/stack'
+import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types'
 
-export type RootStackParamList = {
-  Home: undefined
+export type ActivityItem = {
+  id: number
+  photoUrl: string
+  name: string
+  description: string
+  location: string
+  price: number
+  rating: number
 }
 
-export type RootStackScreenProps<T extends keyof RootStackParamList> =
-  StackScreenProps<RootStackParamList, T>
+export type RootStackParamList = {
+  ActivitiesScreen: undefined
+  ActivityDetailsScreen: { item: ActivityItem }
+}
+
+export type RootStackScreenProps = NativeStackNavigationProp<RootStackParamList>
