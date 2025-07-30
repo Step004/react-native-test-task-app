@@ -1,15 +1,14 @@
 import tw from 'twrnc'
-import { BackIcon } from '../../assets/svg/BackIcon'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { ActivityItem } from './types/root'
 import { ScrollView } from 'react-native-gesture-handler'
 import { StatusBar, Image, TouchableOpacity, View, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useFavorites } from '../hooks/useFavorites'
 import { useState } from 'react'
-
+import { useAddToFavorites } from '@api/favorites/useAddToFavorites'
+import BackIcon from '@assets/svg/BackIcon.svg'
 export const ActivityDetailsScreen = () => {
-  const { mutate } = useFavorites()
+  const { mutate } = useAddToFavorites()
   const [imgError, setImgError] = useState(false)
   const navigation = useNavigation()
   const route = useRoute()
@@ -40,7 +39,7 @@ export const ActivityDetailsScreen = () => {
             source={
               !imgError && item.photoUrl
                 ? { uri: item.photoUrl }
-                : require('../../assets/img/itemImg.png')
+                : require('@assets/img/itemImg.png')
             }
             style={tw`w-full mb-[2px] h-[450px] rounded-b-[20px]`}
             resizeMode="cover"

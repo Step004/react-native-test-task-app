@@ -2,9 +2,9 @@ import {
   TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack'
-import { RootStackParamList } from '../screens/types/root'
-import { ActivitiesScreen } from '../screens/ActivitiesScreen'
-import { ActivityDetailsScreen } from '../screens/ActivityDetailsScreen'
+import { ActivitiesScreen } from '@screens/ActivitiesScreen'
+import { ActivityDetailsScreen } from '@screens/ActivityDetailsScreen'
+import { RootStackParamList } from '@screens/types/root'
 
 const Stack = createStackNavigator<RootStackParamList>()
 

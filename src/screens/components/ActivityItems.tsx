@@ -1,15 +1,17 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import { ActivityItem, RootStackScreenProps } from '../types/root'
 import { useNavigation } from '@react-navigation/native'
 import tw from 'twrnc'
-import { FireIcon } from '../../../assets/svg/FireIcon'
-import { StarIcon } from '../../../assets/svg/StarIcon'
-import { LocationIcon } from '../../../assets/svg/LocationIcon'
 import { useState } from 'react'
+import FireIcon from '@assets/svg/FireIcon.svg'
+import StarIcon from '@assets/svg/StarIcon.svg'
+import LocationIcon from '@assets/svg/LocationIcon.svg'
+import { ActivityItem, RootStackScreenProps } from '@screens/types/root'
 
 export const ActivityItems = (item: ActivityItem) => {
   const navigation = useNavigation<RootStackScreenProps>()
+
   const [imgError, setImgError] = useState(false)
+
   const handlePress = (item: ActivityItem) => {
     navigation.navigate('ActivityDetailsScreen', { item })
   }

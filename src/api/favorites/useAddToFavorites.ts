@@ -1,12 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
-import { addToFavorites } from '../api/favorites'
 import { Alert } from 'react-native'
+import { addToFavorites, AddToFavoritesResponse } from './favorites'
 
-export const useFavorites = () => {
-  return useMutation({
+export const useAddToFavorites = () => {
+  return useMutation<AddToFavoritesResponse, Error, number>({
     mutationFn: (id: number) => addToFavorites(id),
     onSuccess: data => {
-      Alert.alert('Success', data.message)  
+      Alert.alert('Success', data.message)
     },
     onError: error => {
       console.error('Error adding to favorites:', error)

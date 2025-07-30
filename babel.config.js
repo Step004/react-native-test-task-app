@@ -12,9 +12,12 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src'],
         alias: {
-          '@/screens': './src/screens',
+          '@screens/*': ['src/screens/*'],
+          '@screens': './src/screens',
+          '@assets': './assets',
+          '@api': './src/api',
+          '@navigation': './src/navigation',
         },
       },
     ],

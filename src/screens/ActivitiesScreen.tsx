@@ -1,9 +1,9 @@
 import { ActivityIndicator, FlatList, Text, View } from 'react-native'
 import tw from 'twrnc'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useActivities } from '../hooks/useActivities'
-import { ActivityItems } from './components/ActivityItems'
+import { useActivities } from '@api/activities/useActivities'
 import { ActivityItem } from './types/root'
+import { ActivityItems } from './components/ActivityItems'
 export const ActivitiesScreen = () => {
   const { data, isLoading } = useActivities()
   if (isLoading) {
