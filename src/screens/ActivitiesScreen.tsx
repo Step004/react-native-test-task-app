@@ -1,17 +1,19 @@
-import { ActivityIndicator, FlatList, Text, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import tw from 'twrnc'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useActivities } from '@api/activities/useActivities'
-import { ActivityItem } from './types/root'
-import { ActivityItems } from './components/ActivityItems'
+import { ActivityItem, RootStackScreenProps } from './types/root'
+import { ActivityCard } from './components/ActivityCard'
+import { useNavigation } from '@react-navigation/native'
+import { Loader } from './components/Loader'
+
 export const ActivitiesScreen = () => {
   const { data, isLoading } = useActivities()
+  const navigation = useNavigation<RootStackScreenProps>()
+  console.log('ActivitiesScreen data:', data)
+
   if (isLoading) {
-    return (
-      <View style={tw`flex-1 items-center justify-center`}>
-        <ActivityIndicator size="large" color="#000" />
-      </View>
-    )
+    return <Loader />
   }
 
   return (
@@ -27,7 +29,7 @@ export const ActivitiesScreen = () => {
           style={{ width: '100%' }}
           keyExtractor={(_, index) => index.toString()}
           renderItem={({ item }: { item: ActivityItem }) => (
-            <ActivityItems {...item} />
+            <ActivityCard item={item} navigation={navigation} />
           )}
         />
       </View>

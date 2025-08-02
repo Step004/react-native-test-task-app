@@ -1,5 +1,4 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import tw from 'twrnc'
 import { useState } from 'react'
 import FireIcon from '@assets/svg/FireIcon.svg'
@@ -7,9 +6,13 @@ import StarIcon from '@assets/svg/StarIcon.svg'
 import LocationIcon from '@assets/svg/LocationIcon.svg'
 import { ActivityItem, RootStackScreenProps } from '@screens/types/root'
 
-export const ActivityItems = (item: ActivityItem) => {
-  const navigation = useNavigation<RootStackScreenProps>()
-
+export const ActivityCard = ({
+  item,
+  navigation,
+}: {
+  item: ActivityItem
+  navigation: RootStackScreenProps
+}) => {
   const [imgError, setImgError] = useState(false)
 
   const handlePress = (item: ActivityItem) => {
@@ -26,7 +29,7 @@ export const ActivityItems = (item: ActivityItem) => {
     >
       {item.rating > 4.5 && (
         <View
-          style={tw`absolute top-5 left-5 z-10 bg-[#fed138] p-[6px] rounded-full`}
+          style={tw`absolute top-5 left-5 z-10 bg-yellow p-[6px] rounded-full`}
         >
           <FireIcon />
         </View>
@@ -43,7 +46,7 @@ export const ActivityItems = (item: ActivityItem) => {
           setImgError(true)
         }}
       />
-      <View style={tw`p-5 bg-[#f7f7f7] rounded-[20px] `}>
+      <View style={tw`p-5 bg-cardWhite rounded-[20px] `}>
         <View style={tw`flex-row items-center justify-between mb-3`}>
           <Text style={tw`text-base font-normal text-black`}>
             {item?.name || 'Activity Name'}
@@ -66,7 +69,7 @@ export const ActivityItems = (item: ActivityItem) => {
             <Text style={tw`text-sm font-normal text-black`}>
               ${item?.price || '00'}
             </Text>
-            <Text style={tw`text-xs font-normal text-[#979797]`}> / night</Text>
+            <Text style={tw`text-xs font-normal text-gray`}> / night</Text>
           </View>
         </View>
       </View>
